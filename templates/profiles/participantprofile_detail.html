@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<link rel='stylesheet' href='{% static "css/custom.css" %}' />
+<h2 class="sub-header">Member Details</h2>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="thumbnail">
+                <img id="img" class="img-responsive" src="{{ object.photo.url }}"/>
+            </div>
+        </div>
+    </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Created_by</th>
+                  <th>Update?</th>
+                  <th>Delete?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>{{ object.first_name }}</td>
+                    <td>{{ object.last_name }}</td>
+                    <td>{{ object.gender }}</td>
+                    <td>{{ object.email }}</td>
+                    <td>{{ object.phone }}</td>
+                    <td>{{ object.created_by }}</td>
+                    <td>
+                    <a href="{% url 'member_update' object.pk %}" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-off" area-hidden="true"></span>
+                    </a>
+                    </td>
+                    <td>
+                    <a href="{% url 'member_delete' object.pk %}" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-off" area-hidden="true"></span>
+                    </a>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div><hr/>
+        <h3>Share</h3>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+        <i class="fa fa-facebook-square fa-3x"></i></a>
+        <a href="https://twitter.com/home?status={{ request.build_absolute_uri }}">
+        <i class="fa fa-twitter-square fa-3x"></i></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}">
+        <i class="fa fa-linkedin-square fa-3x"></i></a>
+        <br/>
+        <hr/>
+
+{% endblock %}

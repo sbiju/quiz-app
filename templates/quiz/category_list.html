@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block content %}
+<h2 class="text-center">{% trans "Category list" %}</h2>
+
+
+{% for cat in category_list %}
+<link rel='stylesheet' href='{% static "css/custom.css" %}' />
+<div class="container-fluid">
+<div class="col-sm-4 col-sm-offset-4">
+<div class="thumbnail">
+    <table class="table table-bordered">
+    <tr>
+	<td><a href="{% url 'quiz_category_list_matching' category_name=cat.category %}">
+	  {{ cat.category }}
+	</a></td>
+    </tr>
+    </table>
+</div>
+</div>
+</div>
+  {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block content %}
+<h2 class="text-center">{% trans "Quiz Master list" %}</h2>
+
+{% for item in object_list %}
+<link rel='stylesheet' href='{% static "css/custom.css" %}' />
+<div class="container-fluid">
+<div class="col-sm-4 col-sm-offset-4">
+<div class="thumbnail">
+    <table class="table table-bordered">
+        <tr>
+            <td>{{ forloop.counter }})<a href="{{ item.get_absolute_url }}"> {{ item.first_name }}</a></td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}
+
